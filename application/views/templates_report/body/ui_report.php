@@ -12,7 +12,7 @@
 	          <div class="box-body">
 	          	<div class="row">
 	          		<div class="col-md-12">
-	          			<label>Test Parameter</label>
+	          			<label>letak parameter</label>
 	          			<input type="text" class="form-control" name="">
 	          		</div>
 	          	</div>
