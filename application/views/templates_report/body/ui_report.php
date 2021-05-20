@@ -12,7 +12,7 @@
 	          <div class="box-body">
 	          	<div class="row">
 	          		<div class="col-md-12">
-	          			<label>letak parameter</label>
+	          			<label>letak parameter 2</label>
 	          			<input type="text" class="form-control" name="">
 	          		</div>
 	          	</div>
