@@ -14,7 +14,7 @@
 	          		<div class="col-md-12">
 	          			<ul>
 	          				<li><a href="<?= base_url()?>ui_report"> Ui Report </a></li>
-	          				<li><a href=""> Sample 1 </a></li>
+	          				<li><a href="<?= base_url()?>server"> Server </a></li>
 	          				<li><a href=""> Sample 2 </a></li>
 	          			</ul>
 	          		</div>

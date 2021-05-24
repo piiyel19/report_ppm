@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ui_report extends CI_Controller {
+class server extends CI_Controller {
 
 	public function __construct()
 	{
