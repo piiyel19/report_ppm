@@ -11,6 +11,20 @@ class Dbase_lookup extends CI_Model
 	}
 
 
+	function lookup_option_ppm_act_name($type)
+	{	
+		$this->db->where('type_ppm',$type);
+
+		$query =  $this->db->get('ppm2_activity')->result();
+		foreach ($query as $data) 
+		{
+			$name = $data->activitiy_name;
+			$id = $data->id;
+			echo '<option value="'.$id.'">'.$name.'</option>';
+		}
+	}
+
+
 	function myrole($userid)
 	{
 		$this->db->where('userid',$userid);

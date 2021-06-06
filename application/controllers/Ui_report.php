@@ -30,7 +30,21 @@ class Ui_report extends CI_Controller {
 
 
 	public function test()
+	{	
+		$base = base_url();
+		$a = $this->uri->segment(3);
+		echo $base;
+	}
+
+	public function workstation()
 	{
-		echo '1234';
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/workstation');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
 	}
 }
