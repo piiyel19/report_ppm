@@ -5829,3 +5829,13 @@ function myrole($user_id)
   $ci->load->model('Dbase_lookup','lookup');
   return $ci->lookup->myrole($user_id);
 }
+
+
+// new report ppm
+function lookup_option_ppm_act_name($type)
+{
+  $ci =& get_instance();
+  $ci->load->helper('url');
+  $ci->load->model('Dbase_lookup','lookup');
+  return $ci->lookup->lookup_option_ppm_act_name($type);
+}
