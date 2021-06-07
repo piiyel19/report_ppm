@@ -5,7 +5,7 @@
 				<h3 class="box-title"> <b>Generate Report</b> </h3>
 			</div>
 			<div class="box-body">
-				<form>
+				<form action="<?= base_url()?>Ui_generator/workstation">
 					<div class="row">
 						<div class="col-md-2">
 							<label>PPM Category</label><br>
