@@ -200,4 +200,91 @@ class Ui_generator extends CI_Controller {
      
       $writer->save('php://output'); // download file 
     }
+
+    function server()
+    {
+      // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
+      
+      $style = $styleArray = [
+        'font' => [
+            'bold' => true,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'FFA0A0A0',
+            ],
+        ],
+      ];
+
+      $style2 = $styleArray = [
+        'font' => [
+            'bold' => true,
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'FFFF0000',
+            ],
+        ],
+      ];
+
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+      $sheet->setCellValue('A1', 'Item Description');
+      $sheet->setCellValue('B1', 'Model');
+      $sheet->setCellValue('C1', 'Serial Number');
+      $sheet->getStyle('A1:C1')->applyFromArray($style);
+      $sheet->getStyle('C2')->applyFromArray($style2);
+      $sheet->getStyle('D2')->applyFromArray($style2);
+      $sheet->setCellValue('C2', 'AV');
+      $sheet->setCellValue('D2', 'UPS');
+      $sheet->mergeCells('C1:D1');
+      $sheet->mergeCells('A1:A2');
+      $sheet->mergeCells('B1:B2');
+     
+      $writer = new Xlsx($spreadsheet);
+     
+      $filename = 'server';
+     
+      header('Content-Type: application/vnd.ms-excel');
+      header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+      header('Cache-Control: max-age=0');
+     
+      $writer->save('php://output'); // download file 
+    }
 }
