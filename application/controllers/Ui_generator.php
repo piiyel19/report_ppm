@@ -118,12 +118,15 @@ class Ui_generator extends CI_Controller {
     {
       // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
       
+      //STYLINGS
       $style = $styleArray = [
         'font' => [
-            'bold' => true,
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
-            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
         ],
         'borders' => [
             'top' => [
@@ -142,17 +145,19 @@ class Ui_generator extends CI_Controller {
         'fill' => [
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
-                'argb' => 'FFA0A0A0',
+                'argb' => '305496',
             ],
         ],
       ];
 
       $style2 = $styleArray = [
         'font' => [
-            'bold' => true,
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
-            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
         ],
         'borders' => [
             'top' => [
@@ -171,25 +176,140 @@ class Ui_generator extends CI_Controller {
         'fill' => [
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
-                'argb' => 'FFFF0000',
+                'argb' => 'ED7D31',
             ],
         ],
       ];
 
+      $style3 = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
+        ],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => '990000',
+            ],
+        ],
+      ];
+      //
+
+      //INIT SPREADSHEET - one sheet document
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
+      //
+
+      //CREATE CUSTOM HEADERS
+      //Row 1
       $sheet->setCellValue('A1', 'Item Description');
       $sheet->setCellValue('B1', 'Model');
       $sheet->setCellValue('C1', 'Serial Number');
-      $sheet->getStyle('A1:C1')->applyFromArray($style);
-      $sheet->getStyle('C2')->applyFromArray($style2);
-      $sheet->getStyle('D2')->applyFromArray($style2);
-      $sheet->setCellValue('C2', 'AV');
-      $sheet->setCellValue('D2', 'UPS');
-      $sheet->mergeCells('C1:D1');
+      $sheet->setCellValue('D1', 'Location Code');
+      $sheet->setCellValue('E1', 'Room Name');
+      $sheet->setCellValue('F1', 'Hostname');
+      $sheet->setCellValue('G1', 'Networking');
+      $sheet->setCellValue('J1', 'Specification');
+      $sheet->setCellValue('M1', 'Monitor');
+      $sheet->setCellValue('O1', 'UPS');
+      $sheet->setCellValue('P1', 'Windows Version');
+      $sheet->setCellValue('Q1', 'Software');
+      $sheet->setCellValue('S1', 'Problem');
+      $sheet->setCellValue('U1', 'PPM#2');
+      $sheet->setCellValue('W1', 'Remarks');
+      $sheet->setCellValue('X1', 'Total');
+
+      //Row 2
+      $sheet->setCellValue('G2', 'Nodes');
+      $sheet->setCellValue('H2', 'Static IP');
+      $sheet->setCellValue('I2', 'Mac Address');
+      $sheet->setCellValue('J2', 'Processor');
+      $sheet->setCellValue('K2', 'Hard Disk');
+      $sheet->setCellValue('L2', 'RAM');
+      $sheet->setCellValue('M2', 'Model');
+      $sheet->setCellValue('N2', 'Serial Number');
+      $sheet->setCellValue('Q2', 'OS');
+      $sheet->setCellValue('R2', 'MO');
+      $sheet->setCellValue('S2', 'AV');
+      $sheet->setCellValue('T2', 'UPS');
+      $sheet->setCellValue('U2', 'Date');
+      $sheet->setCellValue('V2', 'By');
+      $sheet->setCellValue('X2', 'Cur');
+      $sheet->setCellValue('Y2', 'Dept');
+
+      //Merge
       $sheet->mergeCells('A1:A2');
       $sheet->mergeCells('B1:B2');
-     
+      $sheet->mergeCells('C1:C2');
+      $sheet->mergeCells('D1:D2');
+      $sheet->mergeCells('E1:E2');
+      $sheet->mergeCells('F1:F2');
+      $sheet->mergeCells('G1:I1');
+      $sheet->mergeCells('J1:L1');
+      $sheet->mergeCells('M1:N1');
+      $sheet->mergeCells('Q1:R1');
+      $sheet->mergeCells('S1:T1');
+      $sheet->mergeCells('U1:V1');
+      $sheet->mergeCells('X1:Y1');
+
+      //Styling
+      $sheet->getStyle('A1:A2')->applyFromArray($style);
+      $sheet->getStyle('B1:B2')->applyFromArray($style);
+      $sheet->getStyle('C1:C2')->applyFromArray($style);
+      $sheet->getStyle('D1:D2')->applyFromArray($style);
+      $sheet->getStyle('E1:E2')->applyFromArray($style);
+      $sheet->getStyle('F1:F2')->applyFromArray($style);
+      $sheet->getStyle('G1:I1')->applyFromArray($style);
+      $sheet->getStyle('G2')->applyFromArray($style);
+      $sheet->getStyle('H2')->applyFromArray($style);
+      $sheet->getStyle('I2')->applyFromArray($style);
+      $sheet->getStyle('J1:L1')->applyFromArray($style);
+      $sheet->getStyle('J2')->applyFromArray($style);
+      $sheet->getStyle('K2')->applyFromArray($style);
+      $sheet->getStyle('L2')->applyFromArray($style);
+      $sheet->getStyle('M1:N1')->applyFromArray($style);
+      $sheet->getStyle('M2')->applyFromArray($style);
+      $sheet->getStyle('N2')->applyFromArray($style);
+      $sheet->getStyle('O1')->applyFromArray($style);
+      $sheet->getStyle('O2')->applyFromArray($style);
+      $sheet->getStyle('P1')->applyFromArray($style3);
+      $sheet->getStyle('P2')->applyFromArray($style3);
+      $sheet->getStyle('Q1:R1')->applyFromArray($style);
+      $sheet->getStyle('Q2')->applyFromArray($style);
+      $sheet->getStyle('R2')->applyFromArray($style);
+      $sheet->getStyle('S1:T1')->applyFromArray($style2);
+      $sheet->getStyle('S2')->applyFromArray($style2);
+      $sheet->getStyle('T2')->applyFromArray($style2);
+      $sheet->getStyle('U1:V1')->applyFromArray($style);
+      $sheet->getStyle('U2')->applyFromArray($style);
+      $sheet->getStyle('V2')->applyFromArray($style);
+      $sheet->getStyle('W1:W2')->applyFromArray($style);
+      $sheet->getStyle('X1:Y1')->applyFromArray($style);
+      $sheet->getStyle('X2')->applyFromArray($style);
+      $sheet->getStyle('Y2')->applyFromArray($style);
+
+      //DATA FILL
+      //
+      
+      //SAVE-DOWNLOAD DOCUMENT
       $writer = new Xlsx($spreadsheet);
      
       $filename = 'workstation';
@@ -199,5 +319,7 @@ class Ui_generator extends CI_Controller {
       header('Cache-Control: max-age=0');
      
       $writer->save('php://output'); // download file 
+      //
+
     }
 }
