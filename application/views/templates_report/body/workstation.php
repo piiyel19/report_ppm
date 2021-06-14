@@ -12,13 +12,14 @@
 							<select class="form-control">
 								<option>Server</option>
 								<option>Network</option>
+								<option selected> Workstation</option>
 							</select>
 						</div>
 						<div class="col-md-2">
 							<label>PPM Activity</label><br>
 							<select class="form-control">
-								<option>Val1</option>
-								<option>Val2</option>
+								<option value=''>-- Select Activity --</option>
+		          				<?= lookup_option_ppm_act_name('workstation'); ?>
 							</select>
 						</div>
 					</div>

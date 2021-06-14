@@ -327,12 +327,16 @@ class Ui_generator extends CI_Controller {
     {
       // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
       
+      //STYLINGS
       $style = $styleArray = [
         'font' => [
             'bold' => true,
+            'size' => 9,
+            'color' => array('rgb' => '000000'),222
         ],
         'alignment' => [
-            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
         ],
         'borders' => [
             'top' => [
@@ -351,17 +355,19 @@ class Ui_generator extends CI_Controller {
         'fill' => [
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
-                'argb' => 'FFA0A0A0',
+                'argb' => 'B6D7A8',
             ],
         ],
       ];
 
       $style2 = $styleArray = [
         'font' => [
-            'bold' => true,
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
-            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT,
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
         ],
         'borders' => [
             'top' => [
@@ -380,25 +386,71 @@ class Ui_generator extends CI_Controller {
         'fill' => [
             'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
             'startColor' => [
-                'argb' => 'FFFF0000',
+                'argb' => 'ED7D31',
             ],
         ],
       ];
 
+      $style3 = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
+        ],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => '990000',
+            ],
+        ],
+      ];
+      //
+
+      //INIT SPREADSHEET - one sheet document
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
-      $sheet->setCellValue('A1', 'Item Description');
-      $sheet->setCellValue('B1', 'Model');
-      $sheet->setCellValue('C1', 'Serial Number');
-      $sheet->getStyle('A1:C1')->applyFromArray($style);
-      $sheet->getStyle('C2')->applyFromArray($style2);
-      $sheet->getStyle('D2')->applyFromArray($style2);
-      $sheet->setCellValue('C2', 'AV');
-      $sheet->setCellValue('D2', 'UPS');
-      $sheet->mergeCells('C1:D1');
-      $sheet->mergeCells('A1:A2');
-      $sheet->mergeCells('B1:B2');
-     
+      //
+
+      //CREATE CUSTOM HEADERS
+      //Row 1
+      $sheet->setCellValue('A1', 'Hostname');
+      $sheet->setCellValue('B1', 'Description');
+      $sheet->setCellValue('C1', 'Prod IP Address');
+      $sheet->setCellValue('D1', 'OS Version');
+      $sheet->setCellValue('E1', 'CPU (Core)');
+      $sheet->setCellValue('F1', 'Memory (GB)');
+      $sheet->setCellValue('G1', 'Remarks');
+
+      //Styling
+      $sheet->getStyle('A1')->applyFromArray($style);
+      $sheet->getStyle('B1')->applyFromArray($style);
+      $sheet->getStyle('C1')->applyFromArray($style);
+      $sheet->getStyle('D1')->applyFromArray($style);
+      $sheet->getStyle('E1')->applyFromArray($style);
+      $sheet->getStyle('F1')->applyFromArray($style);
+      $sheet->getStyle('G1')->applyFromArray($style);
+
+      //DATA FILL
+      //
+      
+      //SAVE-DOWNLOAD DOCUMENT
       $writer = new Xlsx($spreadsheet);
      
       $filename = 'server';
@@ -408,5 +460,147 @@ class Ui_generator extends CI_Controller {
       header('Cache-Control: max-age=0');
      
       $writer->save('php://output'); // download file 
+      //
+
+    }
+
+    function network()
+    {
+      // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
+      
+      //STYLINGS
+      $style = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => '000000'),222
+        ],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'B6D7A8',
+            ],
+        ],
+      ];
+
+      $style2 = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
+        ],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'ED7D31',
+            ],
+        ],
+      ];
+
+      $style3 = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => 'FFFFFF'),
+        ],
+        'alignment' => [
+            'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        ],
+        'borders' => [
+            'top' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'bottom' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'right' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+            'left' => [
+                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            ],
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => '990000',
+            ],
+        ],
+      ];
+      //
+
+      //INIT SPREADSHEET - one sheet document
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+      //
+
+      //CREATE CUSTOM HEADERS
+      //Row 1
+      $sheet->setCellValue('A1', 'Hostname');
+      $sheet->setCellValue('B1', 'Description');
+      $sheet->setCellValue('C1', 'Prod IP Address');
+      $sheet->setCellValue('D1', 'OS Version');
+      $sheet->setCellValue('E1', 'CPU (Core)');
+      $sheet->setCellValue('F1', 'Memory (GB)');
+      $sheet->setCellValue('G1', 'Remarks');
+
+      //Styling
+      $sheet->getStyle('A1')->applyFromArray($style);
+      $sheet->getStyle('B1')->applyFromArray($style);
+      $sheet->getStyle('C1')->applyFromArray($style);
+      $sheet->getStyle('D1')->applyFromArray($style);
+      $sheet->getStyle('E1')->applyFromArray($style);
+      $sheet->getStyle('F1')->applyFromArray($style);
+      $sheet->getStyle('G1')->applyFromArray($style);
+
+      //DATA FILL
+      //
+      
+      //SAVE-DOWNLOAD DOCUMENT
+      $writer = new Xlsx($spreadsheet);
+     
+      $filename = 'network';
+     
+      header('Content-Type: application/vnd.ms-excel');
+      header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+      header('Cache-Control: max-age=0');
+     
+      $writer->save('php://output'); // download file 
+      //
+
     }
 }
