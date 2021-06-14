@@ -121,7 +121,6 @@ class Ui_generator extends CI_Controller {
       //STYLINGS
       $style = $styleArray = [
         'font' => [
-            'size' => 9,
             'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
@@ -152,7 +151,6 @@ class Ui_generator extends CI_Controller {
 
       $style2 = $styleArray = [
         'font' => [
-            'size' => 9,
             'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
@@ -183,7 +181,6 @@ class Ui_generator extends CI_Controller {
 
       $style3 = $styleArray = [
         'font' => [
-            'size' => 9,
             'color' => array('rgb' => 'FFFFFF'),
         ],
         'alignment' => [
@@ -211,10 +208,42 @@ class Ui_generator extends CI_Controller {
             ],
         ],
       ];
+
+      $style4 = $styleArray = [
+        'font' => [
+            'color' => array('rgb' => '000000'),
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => '70AD47',
+            ],
+        ],
+      ];
+
+      $style5 = $styleArray = [
+        'font' => [
+            'size' => 9,
+            'color' => array('rgb' => '000000'),
+        ],
+        'alignment' => [
+            'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+        ],
+        'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => [
+                'argb' => 'C6EFCE',
+            ],
+        ],
+      ];
       //
 
       //INIT SPREADSHEET - one sheet document
       $spreadsheet = new Spreadsheet();
+      $spreadsheet->getDefaultStyle()->getFont()->setSize(9);
       $sheet = $spreadsheet->getActiveSheet();
       //
 
@@ -306,7 +335,71 @@ class Ui_generator extends CI_Controller {
       $sheet->getStyle('X2')->applyFromArray($style);
       $sheet->getStyle('Y2')->applyFromArray($style);
 
-      //DATA FILL
+      //QUERY DATA
+      $query = $this->Ui_generator->computer_data("test")->result();
+      //
+
+      //DATA MASSAGE AND FILL
+      $highestColumn = $sheet->getHighestColumn();
+      $dt_init_row = 3;
+      $dt_curr_row = $dt_init_row;
+      
+
+      $lvl = $query[0]->level;
+      $sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$lvl);
+      $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style4);
+      $dt_curr_row++;
+
+      $dept = $query[0]->department;
+      $sheet->setCellValue('A'.$dt_curr_row,$dept);
+      $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
+      $dt_curr_row++;
+
+      foreach ($query as $row) {
+        if($lvl != $row->level){
+          $lvl = $row->level;
+          $sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$lvl);;
+          $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style4);
+          $dt_curr_row++;
+        }
+        if($dept != $row->department){
+          $dept = $row->department;
+          $sheet->setCellValue('A'.$dt_curr_row,$dept);
+          $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
+          $dt_curr_row++;
+        }
+        $data = array();
+        array_push($data, 
+          [
+            $row->description,
+            $row->model,
+            $row->serial_number,
+            $row->location,
+            $row->room_name,
+            $row->name,
+            $row->network_port,
+            $row->ip,
+            $row->mac_address,
+            $row->processor_type,
+            $row->capacity,
+            $row->Ram,
+            $row->monitor_model,
+            $row->monitor_serial_no,
+            $row->ups_serial_no,
+            $row->win_update,
+            " ",//OS
+            " ",//MO
+            $row->AV,
+            $row->UPS,
+            $row->perform_date,
+            $row->responsible,
+            $row->comment 
+          ]
+        );
+        $sheet->fromArray($data,NULL,'A'.$dt_curr_row);
+        $dt_curr_row++;
+      }
+      
       //
       
       //SAVE-DOWNLOAD DOCUMENT

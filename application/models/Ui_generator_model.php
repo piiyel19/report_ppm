@@ -24,5 +24,45 @@ class Ui_generator_model extends CI_Model
 
 	  }
 
+	function computer_data($param)
+	{
+		$select="SELECT
+				pr.type_ppm_activity,
+				lct.level,
+				lct.department,
+				cpt.description,
+				cpt.model,
+				cpt.serial_number,
+				cpt.location,
+				lct.room_name,
+				cpt.name,
+				cpt.network_port,
+				cpt.ip,
+				cpt.mac_address,
+				cpt.processor_type,
+				cpt.capacity,
+				cpt.`Ram`,
+				cpt.monitor_model,
+				cpt.monitor_serial_no,
+				cpt.ups_serial_no,
+				pcc.win_update,
+				(case when pcc.checklist_6 = 'Yes' and pcc.checklist_7 ='Yes' then 1 else 0 end) as AV,
+				(case when pcc.checklist_9 = 'Yes' then 1 else 0 end) as UPS,
+				pr.perform_date,
+				pr.responsible,
+				pc.comment 
+				from ppm_register pr
+				join computer cpt on pr.hostname = cpt.name  
+				join location lct on cpt.location = lct.name
+				join ppm_computer_checklist pcc on pr.id_number = pcc.id_number 
+				join ppm_comment pc on pr.id_number = pc.id_number 
+				where pr.ppm_device = 'Computer'
+				order by level,department asc";
+
+  		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
 
 }
