@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Server extends CI_Controller {
+class UI_test extends CI_Controller {
 
 	public function __construct()
 	{
@@ -28,9 +28,15 @@ class Server extends CI_Controller {
 	    }
 	}
 
-
-	public function test()
+	public function ui()
 	{
-		echo '1234';
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/test_ui');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
 	}
 }

@@ -21,7 +21,7 @@ class Ui_report extends CI_Controller {
 		if((!empty($this->session->userdata('logged_in'))))
 		{
 			$this->load->view('templates_report/header/header');
-			$this->load->view('templates_report/body/server');
+			$this->load->view('templates_report/body/Ui_report');
 			$this->load->view('templates_report/footer/footer');
 		} else {
 	      redirect('login');
@@ -42,6 +42,18 @@ class Ui_report extends CI_Controller {
 		{
 			$this->load->view('templates_report/header/header');
 			$this->load->view('templates_report/body/workstation');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
+	}
+
+	public function server()
+	{
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/server');
 			$this->load->view('templates_report/footer/footer');
 		} else {
 	      redirect('login');

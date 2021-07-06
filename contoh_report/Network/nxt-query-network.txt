@@ -1,0 +1,10 @@
+select 
+pr.hostname,
+phd.model,
+phd.ip,
+phd.serial_number,
+pr.location,
+phc.port 
+from ppm_hardware_device phd
+join ppm_register pr on phd.hostname = pr.hostname 
+join ppm_hardware_checklist phc on phd.id_number =  phc.id_number 

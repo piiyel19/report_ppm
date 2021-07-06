@@ -1,0 +1,20 @@
+select
+pr.type_ppm_activity,
+lct.level,
+lct.department,
+hardware .model,
+hardware.serial_number,
+hardware.location,
+lct.room_name,
+hardware.name,
+hardware.network_port,
+hardware.ip_address,
+pr.perform_date,
+pr.responsible,
+pc.comment 
+from ppm_register pr
+join hardware hardware on pr.hostname = hardware.name 
+join location lct on hardware.location = lct.name
+join ppm_comment pc on pr.id_number = pc.id_number
+where pr.ppm_device = 'Printer'
+order by level,department asc

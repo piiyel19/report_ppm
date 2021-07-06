@@ -1,0 +1,26 @@
+select
+pr.type_ppm_activity,
+lct.level,
+lct.department,
+cpt.description,
+cpt.model,
+cpt.serial_number,
+cpt.location,
+lct.room_name,
+cpt.name,
+cpt.mac_address,
+cpt.processor_type,
+cpt.capacity,
+cpt.`Ram`,
+pcc.win_update,
+(case when pcc.checklist_6 = 'Yes' and pcc.checklist_7 ='Yes' then 1 else 0 end) as AV,
+pr.perform_date,
+pr.responsible,
+pc.comment 
+from ppm_register pr
+join computer cpt on pr.hostname = cpt.name  
+join location lct on cpt.location = lct.name
+join ppm_computer_checklist pcc on pr.id_number = pcc.id_number 
+join ppm_comment pc on pr.id_number = pc.id_number 
+where pr.ppm_device = 'Notebook'
+order by level,department asc

@@ -15,13 +15,12 @@
 								<option value="notebook">Notebook</option>
 								<option value="printer">Printer</option>
 								<option value="scanner">Scanner</option>
-							</select>
 						</div>
 						<div class="col-md-2">
 							<label>PPM Activity</label><br>
 							<select class="form-control">
-								<option>Val1</option>
-								<option>Val2</option>
+								<option value=''>-- Select Activity --</option>
+		          				<?= lookup_option_ppm_act_name('workstation'); ?>
 							</select>
 						</div>
 					</div>
