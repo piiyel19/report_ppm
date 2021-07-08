@@ -15,6 +15,7 @@
 								<option value="notebook">Notebook</option>
 								<option value="printer">Printer</option>
 								<option value="scanner">Scanner</option>
+							</select>
 						</div>
 						<div class="col-md-2">
 							<label>PPM Activity</label><br>

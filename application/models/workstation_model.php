@@ -64,5 +64,95 @@ class workstation_model extends CI_Model
 		return $query;
 	}
 
+	function laptop_data($param)
+	{
+		$select="select
+				pr.type_ppm_activity,
+				lct.level,
+				lct.department,
+				cpt.description,
+				cpt.model,
+				cpt.serial_number,
+				cpt.location,
+				lct.room_name,
+				cpt.name,
+				cpt.mac_address,
+				cpt.processor_type,
+				cpt.capacity,
+				cpt.`Ram`,
+				pcc.win_update,
+				(case when pcc.checklist_6 = 'Yes' and pcc.checklist_7 ='Yes' then 1 else 0 end) as AV,
+				pr.perform_date,
+				pr.responsible,
+				pc.comment 
+				from ppm_register pr
+				join computer cpt on pr.hostname = cpt.name  
+				join location lct on cpt.location = lct.name
+				join ppm_computer_checklist pcc on pr.id_number = pcc.id_number 
+				join ppm_comment pc on pr.id_number = pc.id_number 
+				where pr.ppm_device = 'Notebook'
+				order by level,department asc";
+
+  		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
+	function printer_data($param)
+	{
+		$select="select
+				pr.type_ppm_activity,
+				lct.level,
+				lct.department,
+				hardware .model,
+				hardware.serial_number,
+				hardware.location,
+				lct.room_name,
+				hardware.name,
+				hardware.network_port,
+				hardware.ip_address,
+				pr.perform_date,
+				pr.responsible,
+				pc.comment 
+				from ppm_register pr
+				join hardware hardware on pr.hostname = hardware.name 
+				join location lct on hardware.location = lct.name
+				join ppm_comment pc on pr.id_number = pc.id_number
+				where pr.ppm_device = 'Printer'
+				order by level,department asc";
+
+  		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
+	function scanner_data($param)
+	{
+		$select="select
+				pr.type_ppm_activity,
+				lct.level,
+				lct.department,
+				hardware .model,
+				hardware.serial_number,
+				hardware.location,
+				lct.room_name,
+				hardware.name,
+				hardware.network_port,
+				hardware.ip_address,
+				pr.perform_date,
+				pr.responsible,
+				pc.comment 
+				from ppm_register pr
+				join hardware hardware on pr.hostname = hardware.name 
+				join location lct on hardware.location = lct.name
+				join ppm_comment pc on pr.id_number = pc.id_number
+				where pr.ppm_device = 'Scanner'
+				order by level,department asc";
+
+  		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
 
 }
