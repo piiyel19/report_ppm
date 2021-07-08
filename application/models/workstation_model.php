@@ -57,7 +57,7 @@ class workstation_model extends CI_Model
 				join ppm_computer_checklist pcc on pr.id_number = pcc.id_number 
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.ppm_device = 'Computer'
-				order by level,department asc";
+				order by cast(level as int),department asc";
 
   		$query= $this->db2->query($select);
 
@@ -119,7 +119,7 @@ class workstation_model extends CI_Model
 				join location lct on hardware.location = lct.name
 				join ppm_comment pc on pr.id_number = pc.id_number
 				where pr.ppm_device = 'Printer'
-				order by level,department asc";
+				order by cast(level as int),department asc";
 
   		$query= $this->db2->query($select);
 
@@ -147,9 +147,30 @@ class workstation_model extends CI_Model
 				join location lct on hardware.location = lct.name
 				join ppm_comment pc on pr.id_number = pc.id_number
 				where pr.ppm_device = 'Scanner'
-				order by level,department asc";
+				order by cast(level as int),department asc";
 
   		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
+	function count_data($type,$lvl,$dept){
+		$select= "select COUNT(*) as counter 
+				from ppm_worksation_asset pwa 
+				join location lc on pwa.location = lc.name
+				where pwa.`type` = '".$type."'";
+
+		if($lvl){
+			$select.=" and lc.`level` = '".$lvl."' ";
+		}
+
+		if($dept){
+			$select.=" and lc.`department` = '".$dept."' ";
+		}
+
+		$select.=" limit 1";
+
+		$query= $this->db2->query($select);
 
 		return $query;
 	}

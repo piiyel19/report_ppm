@@ -294,22 +294,52 @@ class Workstation extends CI_Controller {
 	    $dept_total = 0;
 	    $level_total_loct = $dt_init_row;
 	    $dept_total_loct = $dt_init_row+1;
+	    $query_count = count($query);
+	    $counter = 0;
+	    $cur_col = 'X';
+	    $dep_col = 'Y';
 
 	    foreach ($query as $row) {
+
 			if($lvl != $row->level){
-				$lvl = $row->level;
-				$sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$lvl);
+				$dep_data = $this->workstation_model->count_data('Desktop',$lvl,NULL)->result();
+				$sheet->setCellValue($dep_col.$level_total_loct,$dep_data[0]->counter);
+				$sheet->setCellValue($cur_col.$level_total_loct,$level_total);
+				$level_total = 0;
+				$level_total_loct = $dt_curr_row;
+				$sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$row->level);				
 				$sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style4);
 				$dt_curr_row++;
+
+				if($dept != $row->department){
+					$dept_data = $this->workstation_model->count_data('Desktop',$lvl,$dept)->result();
+					$sheet->setCellValue($dep_col.$dept_total_loct,$dept_data[0]->counter);
+					$sheet->setCellValue($cur_col.$dept_total_loct,$dept_total);
+					$dept_total = 0;
+
+					$dept = $row->department;
+					$dept_total_loct = $dt_curr_row;
+					$sheet->setCellValue('A'.$dt_curr_row,$dept);
+					$sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
+					$dt_curr_row++;
+				}
+				$lvl = $row->level;
+
 			}
+
 			if($dept != $row->department){
+				$dept_data = $this->workstation_model->count_data('Desktop',$lvl,$dept)->result();
+				$sheet->setCellValue($dep_col.$dept_total_loct,$dept_data[0]->counter);
+				$sheet->setCellValue($cur_col.$dept_total_loct,$dept_total);
+				$dept_total = 0;
+
 				$dept = $row->department;
+				$dept_total_loct = $dt_curr_row;
 				$sheet->setCellValue('A'.$dt_curr_row,$dept);
 				$sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
 				$dt_curr_row++;
 			}
-			$level_total++;
-			$dept_total++;
+
 			$data = array();
 			array_push($data, 
 				[
@@ -335,13 +365,27 @@ class Workstation extends CI_Controller {
 					$row->UPS,
 					$row->perform_date,
 					$row->responsible,
-					$row->comment 
+					$row->comment,
+					'1',
+					'1'
 				]
 	      	);
 			$sheet->fromArray($data,NULL,'A'.$dt_curr_row);
-			$dt_curr_row++;
+
 			$level_total++;
 			$dept_total++;
+			$counter++;
+			if($counter == $query_count){
+	      		$dep_data = $this->workstation_model->count_data('Desktop',$lvl,NULL)->result();
+				$sheet->setCellValue($dep_col.$level_total_loct,$dep_data[0]->counter);
+				$sheet->setCellValue($cur_col.$level_total_loct,$level_total);
+				$dt_curr_row++;
+				$dept_data = $this->workstation_model->count_data('Desktop',$lvl,$dept)->result();
+				$sheet->setCellValue($dep_col.$dept_total_loct,$dept_data[0]->counter);
+				$sheet->setCellValue($cur_col.$dept_total_loct,$dept_total);
+	      	}
+			$dt_curr_row++;
+			
 	    }
 	    
 	    //
