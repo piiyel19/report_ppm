@@ -10,21 +10,7 @@ class Server_generator_model extends CI_Model
 	  }
 
 
-	  function test_data($param)
-	  {		
-	  		if(!empty($param)){
-	  			$select="SELECT hostname,responsible, perform_date, ppm_device, status FROM ppm_register WHERE hostname LIKE '%".$param."%' LIMIT 10";
-	  		} else {
-	  			$select="SELECT hostname,responsible, perform_date, ppm_device, status FROM ppm_register LIMIT 10";
-	  		}
-	  		
-		  	$query= $this->db2->query($select);
-
-		  	return $query;
-
-	  }
-
-	function server_data($param)
+	function server_data()
 	{
 		$select="SELECT
 				pr.type_ppm_activity,
@@ -32,6 +18,7 @@ class Server_generator_model extends CI_Model
 				cpt.description,
 				cpt.ip,
 				cpt.operating_system,
+				'Data Missing' as cpu_core,
 				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
