@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class Ui_generator extends CI_Controller {
+class Server_generator extends CI_Controller {
 
   public function __construct()
   {
@@ -11,7 +11,7 @@ class Ui_generator extends CI_Controller {
     parent::__construct();
     $this->load->database();
     $this->load->library('session');
-    $this->load->model('Ui_generator_model','Ui_generator'); 
+    $this->load->model('UI_generator_model','Server_generator'); 
 
 
 
@@ -23,6 +23,12 @@ class Ui_generator extends CI_Controller {
 	function index()
 	{
 		echo 'Hello';
+	}
+
+
+	function din()
+	{
+		
 	}
 
 
@@ -534,8 +540,55 @@ class Ui_generator extends CI_Controller {
       $sheet->getStyle('F1')->applyFromArray($style);
       $sheet->getStyle('G1')->applyFromArray($style);
 
-      //DATA FILL
+      //QUERY DATA
+      $query = $this->Ui_generator->server_data("test")->result();
       //
+
+      //DATA MASSAGE AND FILL
+      $highestColumn = $sheet->getHighestColumn();
+      $dt_init_row = 2;
+      $dt_curr_row = $dt_init_row;
+      
+
+      // $lvl = $query[0]->level;
+      // $sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$lvl);
+      // $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style4);
+      // $dt_curr_row++;
+
+      // $dept = $query[0]->department;
+      // $sheet->setCellValue('A'.$dt_curr_row,$dept);
+      // $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
+      // $dt_curr_row++;
+
+      foreach ($query as $row) {
+        // if($lvl != $row->level){
+        //   $lvl = $row->level;
+        //   $sheet->setCellValue('A'.$dt_curr_row,'LEVEL '.$lvl);;
+        //   $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style4);
+        //   $dt_curr_row++;
+        // }
+        // if($dept != $row->department){
+        //   $dept = $row->department;
+        //   $sheet->setCellValue('A'.$dt_curr_row,$dept);
+        //   $sheet->getStyle('A'.$dt_curr_row.':'.$highestColumn.$dt_curr_row,$lvl)->applyFromArray($style5);
+        //   $dt_curr_row++;
+        // }
+        $data = array();
+        array_push($data, 
+          [
+            $row->name,
+            $row->description,
+            $row->ip,
+            $row->operating_system,
+            $row->cpu_core,
+            $row->Ram,
+            $row->comment 
+          ]
+        );
+        $sheet->fromArray($data,NULL,'A'.$dt_curr_row);
+        $dt_curr_row++;
+      }
+      
       
       //SAVE-DOWNLOAD DOCUMENT
       $writer = new Xlsx($spreadsheet);

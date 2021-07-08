@@ -11,7 +11,7 @@
 	      </div>
 	          
 	          <div class="box-body">
-	          	<form action="<?= base_url()?>Ui_generator/server">
+	          	<form action="<?= base_url()?>Server_generator/server">
 	          		<div class="row">
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">*PPM Category</label>
