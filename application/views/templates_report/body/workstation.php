@@ -5,15 +5,16 @@
 				<h3 class="box-title"> <b>Generate Report</b> </h3>
 			</div>
 			<div class="box-body">
-				<form action="<?= base_url()?>Ui_generator/workstation">
+				<form action="<?= base_url()?>workstation" method="post">
 					<div class="row">
 						<div class="col-md-2">
 							<label>PPM Category</label><br>
-							<select class="form-control">
-								<option>Server</option>
-								<option>Network</option>
-								<option selected> Workstation</option>
-							</select>
+							<select class="form-control" name="ppm_category">
+								<option value="card_reader">Card Reader</option>
+								<option value="computer">Computer</option>
+								<option value="notebook">Notebook</option>
+								<option value="printer">Printer</option>
+								<option value="scanner">Scanner</option>
 						</div>
 						<div class="col-md-2">
 							<label>PPM Activity</label><br>
