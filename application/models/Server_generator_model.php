@@ -18,7 +18,7 @@ class Server_generator_model extends CI_Model
 				cpt.description,
 				cpt.ip,
 				cpt.operating_system,
-				'Data Missing' as cpu_core,
+				cpt.cpu_core,
 				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
