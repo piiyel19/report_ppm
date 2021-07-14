@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Server_generator_model extends CI_Model
+class Ui_Server_generator_model extends CI_Model
 {
 	  function __construct()
 	  {

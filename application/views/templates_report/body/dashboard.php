@@ -14,8 +14,8 @@
 	          		<div class="col-md-12">
 	          			<ul>
 	          				<!-- <li><a href="<?= base_url()?>ui_report"> Ui Report </a></li> -->
-	          				<li><a href="<?= base_url()?>ui_report\workstation"> Workstation </a></li>
-	          				<li><a href="<?= base_url()?>ui_report/server"> Server </a></li>
+	          				<li><a href="<?= base_url()?>ui_report/workstation"> Workstation </a></li>
+	          				<li><a href="<?= base_url()?>server"> Server </a></li>
 	          				<li><a href="<?= base_url()?>network"> Network </a></li>
 	          			</ul>
 	          		</div>

@@ -21,7 +21,29 @@ class Dashboard extends CI_Controller {
 		if((!empty($this->session->userdata('logged_in'))))
 		{
 			$this->load->view('templates_report/header/header');
-			$this->load->view('templates_report/body/dashboard');
+			$this->load->view('templates_report/body/dashboard_v2');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
+	}
+
+	function menu_asset_report(){
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/menu_asset_report');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
+	}
+
+	function menu_progress_report(){
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/menu_progress_report');
 			$this->load->view('templates_report/footer/footer');
 		} else {
 	      redirect('login');

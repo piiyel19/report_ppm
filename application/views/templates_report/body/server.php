@@ -1,10 +1,7 @@
 <div class="content-wrapper">
 	<section class="content">
-
 		<h5><i class="fa fa-angle-double-right" aria-hidden="true"></i> Asset PPM</h5>
-
-
-		<div class="col-md-12">
+		 <div class="col-md-12">
 			<div class="box box-success">
 	      <div class="box-header with-border">
 	        <h3 class="box-title"> <b>Generate Report</b> </h3>
