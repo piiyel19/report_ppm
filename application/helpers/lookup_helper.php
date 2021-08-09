@@ -5839,3 +5839,11 @@ function lookup_option_ppm_act_name($type)
   $ci->load->model('Dbase_lookup','lookup');
   return $ci->lookup->lookup_option_ppm_act_name($type);
 }
+
+function lookup_workstation_device_type()
+{
+  $ci =& get_instance();
+  $ci->load->helper('url');
+  $ci->load->model('Dbase_lookup','lookup');
+  return $ci->lookup->lookup_workstation_device_type();
+}

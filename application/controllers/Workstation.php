@@ -23,10 +23,10 @@ class Workstation extends CI_Controller {
 	function index()
 	{
     	$input = $this->input;
-		$category = strval($input->post('ppm_category'));
+		$category = strval($input->post('ppm_device'));
 
 	    switch ($category) {
-	      	case 'computer':
+	      	case 'Desktop':
 	        	$this->computer($input);
 	        	break;
 
@@ -52,6 +52,18 @@ class Workstation extends CI_Controller {
 	function computer($input)
 	{
 	    // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
+
+	    //QUERY DATA
+	    $query = $this->workstation_model->computer_data($input)->result();
+	    //
+
+	    //CHECK IF QUERY RETURNS DATA
+	    if(!$query){
+	    	$_SESSION['error'] = 'No data for selected parameters! Try again!';
+	    	redirect($_SERVER['HTTP_REFERER']);
+
+	    }
+	    //
 	    
 	    //STYLINGS
 	    $style = [
@@ -175,6 +187,7 @@ class Workstation extends CI_Controller {
 			],
 	    ];
 	    //
+	    
 
 	    //INIT SPREADSHEET - one sheet document
 	    $spreadsheet = new Spreadsheet();
@@ -270,9 +283,7 @@ class Workstation extends CI_Controller {
 	    $sheet->getStyle('X2')->applyFromArray($style);
 	    $sheet->getStyle('Y2')->applyFromArray($style);
 
-	    //QUERY DATA
-	    $query = $this->workstation_model->computer_data($input)->result();
-	    //
+	    
 
 	    //DATA MASSAGE AND FILL
 	    $highestColumn = $sheet->getHighestColumn();

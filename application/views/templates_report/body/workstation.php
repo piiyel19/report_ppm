@@ -6,21 +6,22 @@
 			</div>
 			<div class="box-body">
 				<form action="<?= base_url()?>workstation" method="post">
+					
+					<?php
+						if (isset($_SESSION['error']))
+						{
+						  echo '<div class="alert alert-danger" role="alert">';
+						  echo '<br />Error: '.$_SESSION['error'].'<br/>';
+						  echo '</div>';
+						  unset($_SESSION['error']);
+						}
+					?>
 					<div class="row">
 						<div class="col-md-2">
-							<label>PPM Category</label><br>
-							<select class="form-control" name="ppm_category">
-								<option value="card_reader">Card Reader</option>
-								<option value="computer">Computer</option>
-								<option value="notebook">Notebook</option>
-								<option value="printer">Printer</option>
-								<option value="scanner">Scanner</option>
-							</select>
-						</div>
-						<div class="col-md-2">
 							<label>PPM Activity</label><br>
-							<select class="form-control">
+							<select class="form-control" name="ppm_activity">
 								<option value=''>-- Select Activity --</option>
+								<option value="ALL">ALL</option>
 		          				<?= lookup_option_ppm_act_name('workstation'); ?>
 							</select>
 						</div>
@@ -44,26 +45,25 @@
 					<div class="row">
 						<div class="col-md-2">
 							<label>Level</label><br>
-							<select class="form-control">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+							<select class="form-control" name="level">
+								<option selected=""> -- Select Level -- </option>
+								<option value="ALL">ALL</option>
+								<?= lookup_level(); ?>
 							</select>
 						</div>
 						<div class="col-md-2">
 							<label>Department</label><br>
-							<select class="form-control">
-								<option>Val1</option>
-								<option>Val2</option>
+							<select class="form-control" name="department">
+								<option selected=""> -- Select Department -- </option>
+								<option value="ALL">ALL</option>
+								<?= lookup_department(); ?>
 							</select>
 						</div>
 						<div class="col-md-2">
 							<label>Type Device</label><br>
-							<select class="form-control">
-								<option>Val1</option>
-								<option>Val2</option>
+							<select class="form-control" name="ppm_device">
+								<option selected=""> -- Select Device -- </option>
+								<?= lookup_workstation_device_type(); ?>
 							</select>
 						</div>
 					</div><br>
