@@ -21,7 +21,7 @@
 							<label>PPM Activity</label><br>
 							<select class="form-control" name="ppm_activity">
 								<option value=''>-- Select Activity --</option>
-								<option value="ALL">ALL</option>
+								<!-- <option value="ALL">ALL</option> -->
 		          				<?= lookup_option_ppm_act_name('workstation'); ?>
 							</select>
 						</div>

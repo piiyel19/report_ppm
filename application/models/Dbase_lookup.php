@@ -24,6 +24,20 @@ class Dbase_lookup extends CI_Model
 		}
 	}
 
+	function lookup_quarter()
+	{
+		$this->db->select('quarter');
+		$this->db->from('ppm_register');
+		$this->db->group_by('quarter');
+		$this->db->order_by('quarter','asc');
+		$query = $this->db->get()->result(); 
+		foreach ($query as $data) 
+		{
+			$name = $data->quarter;
+			echo '<option value="'.$name.'">'.$name.'</option>';
+		}
+	}
+
 	function lookup_workstation_device_type()
 	{	
 		$this->db->select('type');
@@ -139,6 +153,7 @@ class Dbase_lookup extends CI_Model
 			echo $select;
 		}
 	}
+
 
 	function lookup_sla_by_id()
 	{

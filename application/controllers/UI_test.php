@@ -16,17 +16,17 @@ class UI_test extends CI_Controller {
 		$this->load->model('Admin_model','Admin'); 
 	}
 	
-	public function index()
-	{
-		if((!empty($this->session->userdata('logged_in'))))
-		{
-			$this->load->view('templates_report/header/header');
-			$this->load->view('templates_report/body/server');
-			$this->load->view('templates_report/footer/footer');
-		} else {
-	      redirect('login');
-	    }
-	}
+	// public function index()
+	// {
+	// 	if((!empty($this->session->userdata('logged_in'))))
+	// 	{
+	// 		$this->load->view('templates_report/header/header');
+	// 		$this->load->view('templates_report/body/server');
+	// 		$this->load->view('templates_report/footer/footer');
+	// 	} else {
+	//       redirect('login');
+	//     }
+	// }
 
 	public function ui()
 	{

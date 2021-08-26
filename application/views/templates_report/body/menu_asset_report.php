@@ -36,7 +36,7 @@
 		  <div class="panel panel-default" style="border: transparent;">
 		   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
 		    <center>
-		     <a href="<?= base_url()?>Server" aria-expanded="true">
+		     <a href="<?= base_url()?>ui_report\server" aria-expanded="true">
 		      <font  color="#fff" class="font-small">Server <br><br></font>
 		     </a>
 		    </center>

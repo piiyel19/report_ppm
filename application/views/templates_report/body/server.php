@@ -8,8 +8,9 @@
 	      </div>
 	          
 	          <div class="box-body">
-	          	<form action="<?= base_url()?>Server_generator/server" method="post">
-	          		<div class="row">
+	          	<form action="<?= base_url()?>server" method="post">
+	          		
+	          		<!-- <div class="row">
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">*PPM Category</label>
 				    				<select class='form-control' name='PPM_Category' id='PPM_Category'>
@@ -17,11 +18,22 @@
 				       				<option selected>Server</option>
 				       				<option value='Network'>Network</option>
 		          			</select>
-				    			</div>
+				    			</div> -->
 
+				    			<?php
+										if (isset($_SESSION['error']))
+										{
+						  				echo '<div class="alert alert-danger" role="alert">';
+						  				echo '<br />Error: '.$_SESSION['error'].'<br/>';
+						  				echo '</div>';
+						  				unset($_SESSION['error']);
+										}
+									?>
+
+									<div class="row">
 									<div class="form-group col-md-3">
-				    				<label for="exampleInputEmail1">*PPM Activity</label>
-				    				<select class='form-control'>
+				    				<label>*PPM Activity</label>
+				    				<select class='form-control' name="ppm_activity">
 				       				<option value=''>-- Select Activity --</option>
 		          				<?= lookup_option_ppm_act_name('Server'); ?>
 		          			</select>
@@ -32,42 +44,43 @@
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">Type Device</label>
 				    				<select class='form-control'>
-				       				<option value=''>-- Optional --</option>
+				       				<option value=''>-- Select --</option>
 				       				<option value="Access Point">Server(Physical)</option>    
 		                  <option value="Controller">Server(Virtual)</option>
 		                  <option value="Firewall">Storage</option>
 		          			</select>
 				    			</div>
 
-									<div class="form-group col-md-3">
+									<!-- <div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">Quarter</label>
 				    				<select class='form-control'>
-				       				<option value=''>-- Optional --</option>
-		          				<?= lookup_deployment_state(); ?>
+				       				<option value=''>-- Select --</option>
+		          				<?= lookup_quarter(); ?>
 		          			</select> 
-				    			</div>
+				    			</div> -->
 
-									<div class="form-group col-md-3">
+									<!-- <div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">day</label>
 				    				<select class='form-control'>
 				       				<option value=''>-- Optional --</option>
 		          				<?= lookup_deployment_state(); ?>
 		          			</select>
-				    			</div>
+				    			</div> -->
 	          		</div>
 
 	          		<div class="row">
 									<div class="form-group col-md-3">
-                    <label for="exampleInputEmail1">Start From</label>
-                    <input class='datetime form-control'></input>
+										<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <label>Start From</label>
+                    <input type="text" class="form-control datepicker" name="datestart" placeholder="Select Start Date...">
                   </div>
 
                   <div class="form-group col-md-3">
-                    <label for="exampleInputEmail1">End From</label>
-                    <input class='datetime form-control'></input>
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <label>End From</label>
+                    <input type="text" class="form-control datepicker" name="dateend" placeholder="Select End Date...">
                   </div>
 	          		</div>
-
 
 	          		<div class="row">
 									<div class="col-md-9" style="align-content: center;">
