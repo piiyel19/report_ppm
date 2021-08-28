@@ -10,7 +10,7 @@ class server_model extends CI_Model
 	  }
 
 
-	function physical_data()
+	function physical_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$date_start = strval($input->post('datestart'));
