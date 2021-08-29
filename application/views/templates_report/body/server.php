@@ -9,16 +9,6 @@
 	          
 	          <div class="box-body">
 	          	<form action="<?= base_url()?>server" method="post">
-	          		
-	          		<!-- <div class="row">
-									<div class="form-group col-md-3">
-				    				<label for="exampleInputEmail1">*PPM Category</label>
-				    				<select class='form-control' name='PPM_Category' id='PPM_Category'>
-				       				<option value='Workstation'>Workstation</option>
-				       				<option selected>Server</option>
-				       				<option value='Network'>Network</option>
-		          			</select>
-				    			</div> -->
 
 				    			<?php
 										if (isset($_SESSION['error']))
@@ -69,18 +59,23 @@
 	          		</div>
 
 	          		<div class="row">
+									<div class="col-md-9"><label>Time Range</label></div>
+								</div>
+
+	          		<div class="row">
 									<div class="form-group col-md-3">
 										<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <label>Start From</label>
+                    <label>Start Date</label>
                     <input type="text" class="form-control datepicker" name="datestart" placeholder="Select Start Date...">
                   </div>
 
                   <div class="form-group col-md-3">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    <label>End From</label>
+                    <label>End Date</label>
                     <input type="text" class="form-control datepicker" name="dateend" placeholder="Select End Date...">
                   </div>
 	          		</div>
+	          		<br>
 
 	          		<div class="row">
 									<div class="col-md-9" style="align-content: center;">

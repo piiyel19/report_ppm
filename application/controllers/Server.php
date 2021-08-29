@@ -23,7 +23,7 @@ class Server extends CI_Controller {
 
         switch ($category) {
             case 'Server(Physical)':
-                $this->Server_Physical($input);
+                $this->server_physical($input);
                 break;
 
             case 'Server(Virtual)':
@@ -40,7 +40,7 @@ class Server extends CI_Controller {
         }
 	}
 
-    function server()
+    function server_physical($input)
     {
         // https://arjunphp.com/generate-excel-phpspreadsheet-codeigniter-php/
 
@@ -174,7 +174,7 @@ class Server extends CI_Controller {
         $sheet->getStyle('G1')->applyFromArray($style);
 
         //QUERY DATA
-        $query = $this->Ui_Server_generator_model->server_data()->result();
+        // $query = $this->server_model->physical_data()->result();
         //
 
         //DATA MASSAGE AND FILL
@@ -202,13 +202,13 @@ class Server extends CI_Controller {
       
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
-
-        $filename = 'server';
-
+       
+        $filename = 'server_physical';
+       
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
         header('Cache-Control: max-age=0');
-
+       
         $writer->save('php://output'); // download file 
         //
 
