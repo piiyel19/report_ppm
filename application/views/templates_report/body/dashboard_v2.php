@@ -11,7 +11,7 @@
 	          </div>
 	          <div class="box-body">
 	          	<div class="row">
-	          		<div class="col-md-12">
+	          		<div class="col-md-6">
 	          		 <div class="panel-group">
 		  			  <div class="panel panel-default" style="border: transparent;">
 		   			   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
@@ -25,7 +25,7 @@
 		 			 </div>
 	          		</div>
 
-	          		<div class="col-md-12">
+	          		<div class="col-md-6">
 	          		 <div class="panel-group">
 		  			  <div class="panel panel-default" style="border: transparent;">
 		   			   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
