@@ -27,11 +27,11 @@ class Server extends CI_Controller {
                 break;
 
             case 'Server(Virtual)':
-                $this->Server_Virtual($input);
+                $this->server_virtual($input);
                 break;
 
             case 'Storage':
-                $this->Storage($input);
+                $this->storage($input);
                 break;
 
             default:

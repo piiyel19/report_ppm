@@ -35,9 +35,9 @@
 				    				<label for="exampleInputEmail1">Type Device</label>
 				    				<select class='form-control'>
 				       				<option value=''>-- Select --</option>
-				       				<option value="Access Point">Server(Physical)</option>    
-		                  <option value="Controller">Server(Virtual)</option>
-		                  <option value="Firewall">Storage</option>
+				       				<option value="server_physical">Server(Physical)</option>    
+		                  <option value="server_virtual">Server(Virtual)</option>
+		                  <option value="storage">Storage</option>
 		          			</select>
 				    			</div>
 
