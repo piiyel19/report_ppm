@@ -31,10 +31,28 @@
 	          		</div>
 
 								<div class="row">
+
+									<div class="form-group col-md-3">
+				    				<label for="exampleInputEmail1">Server Host</label>
+				    				<select class='form-control' name='server_host'>
+				       				<option selected="">-- Select --</option>
+				       				<option value="ALL">ALL</option>
+				       				<option value='host_1'>Host 1</option>    
+		                  <option value='host_2'>Host 2</option>
+		                  <option value='host_3'>Host 3</option>
+		                  <option value='host_4'>Host 4</option>
+		                  <option value='host_5'>Host 5</option>
+		                  <option value='host_6'>Host 6</option>
+		                  <option value='host_7'>Host 7</option>
+		                  <option value='host_8'>Host 8</option>
+		          			</select>
+				    			</div>
+
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">Type Device</label>
 				    				<select class='form-control' name='ppm_device'>
 				       				<option selected="">-- Select --</option>
+				       				<option value="ALL">ALL</option>
 				       				<!-- <option value='Server(Physical)'>Server(Physical)</option>    
 		                  <option value='Server(Virtual)'>Server(Virtual)</option>
 		                  <option value='Storage'>Storage</option> -->
