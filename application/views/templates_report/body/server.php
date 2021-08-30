@@ -34,10 +34,11 @@
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">Type Device</label>
 				    				<select class='form-control' name='ppm_device'>
-				       				<option value=''>-- Select --</option>
-				       				<option value='Server(Physical)'>Server(Physical)</option>    
+				       				<option selected="">-- Select --</option>
+				       				<!-- <option value='Server(Physical)'>Server(Physical)</option>    
 		                  <option value='Server(Virtual)'>Server(Virtual)</option>
-		                  <option value='Storage'>Storage</option>
+		                  <option value='Storage'>Storage</option> -->
+		                  <?= lookup_server_device_type(); ?>
 		          			</select>
 				    			</div>
 
