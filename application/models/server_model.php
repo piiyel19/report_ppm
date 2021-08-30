@@ -22,7 +22,7 @@ class server_model extends CI_Model
 				cpt.description,
 				cpt.ip,
 				cpt.operating_system,
-				cpt.cpu_core,
+				'TEST' AS cpu_core,
 				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
