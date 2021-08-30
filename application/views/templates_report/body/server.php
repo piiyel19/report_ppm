@@ -33,11 +33,11 @@
 								<div class="row">
 									<div class="form-group col-md-3">
 				    				<label for="exampleInputEmail1">Type Device</label>
-				    				<select class='form-control'>
+				    				<select class='form-control' name='ppm_device'>
 				       				<option value=''>-- Select --</option>
-				       				<option value="server_physical">Server(Physical)</option>    
-		                  <option value="server_virtual">Server(Virtual)</option>
-		                  <option value="storage">Storage</option>
+				       				<option value='Server(Physical)'>Server(Physical)</option>    
+		                  <option value='Server(Virtual)'>Server(Virtual)</option>
+		                  <option value='Storage'>Storage</option>
 		          			</select>
 				    			</div>
 
