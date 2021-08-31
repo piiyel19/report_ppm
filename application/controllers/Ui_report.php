@@ -59,4 +59,16 @@ class Ui_report extends CI_Controller {
 	      redirect('login');
 	    }
 	}
+
+	public function network()
+	{
+		if((!empty($this->session->userdata('logged_in'))))
+		{
+			$this->load->view('templates_report/header/header');
+			$this->load->view('templates_report/body/network');
+			$this->load->view('templates_report/footer/footer');
+		} else {
+	      redirect('login');
+	    }
+	}
 }

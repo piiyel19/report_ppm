@@ -211,7 +211,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -232,7 +232,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_2($input)
@@ -386,7 +385,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -561,7 +560,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -736,7 +735,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -911,7 +910,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -1086,7 +1085,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -1261,7 +1260,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );
@@ -1436,7 +1435,7 @@ class Server extends CI_Controller {
                     $row->ip,
                     $row->operating_system,
                     $row->cpu_core,
-                    $row->Ram,
+                    $row->capacity,
                     $row->comment 
                 ]
             );

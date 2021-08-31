@@ -25,7 +25,7 @@ class server_model extends CI_Model
 	// 			cpt.ip,
 	// 			cpt.operating_system,
 	// 			cpt.cpu_core,
-	// 			psc.capacity,
+	// 			cpt.Ram,
 	// 			pc.comment 
 	// 			from ppm_register pr 
 	// 			join computer cpt on pr.hostname = cpt.name
@@ -60,7 +60,7 @@ class server_model extends CI_Model
 	// 			cpt.ip,
 	// 			cpt.operating_system,
 	// 			cpt.cpu_core,
-	// 			psc.capacity,
+	// 			cpt.Ram,
 	// 			pc.comment 
 	// 			from ppm_register pr 
 	// 			join computer cpt on pr.hostname = cpt.name
@@ -91,7 +91,7 @@ class server_model extends CI_Model
 	// 			cpt.ip,
 	// 			cpt.operating_system,
 	// 			cpt.cpu_core,
-	// 			psc.capacity,
+	// 			cpt.Ram,
 	// 			pc.comment  
 	// 			from ppm_register pr 
 	// 			join computer cpt on pr.hostname = cpt.name
@@ -108,39 +108,36 @@ class server_model extends CI_Model
 	// 	return $query;
 	// }
 
-	  function host1_data($input)
+	  function accesspoint_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
-		$type_ppm  = strval($input->post('ppm_device'));
+		// $type_device  = strval($input->post('ppm_device'));
 		$date_start = strval($input->post('datestart'));
 		$date_end = strval($input->post('dateend'));
 
 		$select="SELECT
-				pr.type_ppm_activity,
-				cpt.name,
-				cpt.description,
-				cpt.ip,
-				cpt.operating_system,
-				cpt.cpu_core,
-				psc.capacity,
-				pc.comment 
+				pr.hostname,
+				phd.model,
+				phd.ip,
+				phd.serial_number,
+				pr.location,
+				phc.port 
 				from ppm_register pr 
-				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
-				join ppm_comment pc on pr.id_number = pc.id_number 
-				where pr.hostname like 'WIHST01%'
+				join ppm_hardware_device phd on pr.id_number = phd.id_number 
+				join ppm_hardware_checklist phc on pr.id_number =  phc.id_number 
+				where pr.ppm_device ='Access Point'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
-		if($type_ppm != 'ALL'){
-		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
-		 }
+		// if($type_device != 'ALL'){
+		//  	$select .=" and pr.ppm_device = '".$type_device."' ";
+		//  }
 
   		$query= $this->db2->query($select);
 
 		return $query;
 	}
 
-	function host2_data($input)
+	function controller_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
@@ -154,11 +151,10 @@ class server_model extends CI_Model
 				cpt.ip,
 				cpt.operating_system,
 				cpt.cpu_core,
-				psc.capacity,
+				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
 				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST02%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
@@ -172,7 +168,7 @@ class server_model extends CI_Model
 		return $query;
 	}
 
-	function host3_data($input)
+	function firewall_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
@@ -186,11 +182,10 @@ class server_model extends CI_Model
 				cpt.ip,
 				cpt.operating_system,
 				cpt.cpu_core,
-				psc.capacity,
+				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
 				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST03%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
@@ -204,7 +199,7 @@ class server_model extends CI_Model
 		return $query;
 	}
 
-	function host4_data($input)
+	function ups_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
@@ -218,11 +213,10 @@ class server_model extends CI_Model
 				cpt.ip,
 				cpt.operating_system,
 				cpt.cpu_core,
-				psc.capacity,
+				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
 				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST04%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
@@ -236,7 +230,7 @@ class server_model extends CI_Model
 		return $query;
 	}
 
-	function host5_data($input)
+	function loadbalancer_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
@@ -250,11 +244,10 @@ class server_model extends CI_Model
 				cpt.ip,
 				cpt.operating_system,
 				cpt.cpu_core,
-				psc.capacity,
+				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
 				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST05%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
@@ -268,7 +261,7 @@ class server_model extends CI_Model
 		return $query;
 	}
 
-	function host6_data($input)
+	function switch_data($input)
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
@@ -282,77 +275,12 @@ class server_model extends CI_Model
 				cpt.ip,
 				cpt.operating_system,
 				cpt.cpu_core,
-				psc.capacity,
+				cpt.Ram,
 				pc.comment 
 				from ppm_register pr 
 				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST06%'
-				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
-
-		if($type_ppm != 'ALL'){
-		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
-		 }
-
-  		$query= $this->db2->query($select);
-
-		return $query;
-	}
-
-	function host7_data($input)
-	{
-		$activity = strval($input->post('ppm_activity'));
-		$type_ppm  = strval($input->post('ppm_device'));
-		$date_start = strval($input->post('datestart'));
-		$date_end = strval($input->post('dateend'));
-
-		$select="SELECT
-				pr.type_ppm_activity,
-				cpt.name,
-				cpt.description,
-				cpt.ip,
-				cpt.operating_system,
-				cpt.cpu_core,
-				psc.capacity,
-				pc.comment 
-				from ppm_register pr 
-				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
-				join ppm_comment pc on pr.id_number = pc.id_number 
-				where pr.hostname like 'WIHST07%'
-				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
-
-		if($type_ppm != 'ALL'){
-		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
-		 }
-
-  		$query= $this->db2->query($select);
-
-		return $query;
-	}
-
-	function host8_data($input)
-	{
-		$activity = strval($input->post('ppm_activity'));
-		$type_ppm  = strval($input->post('ppm_device'));
-		$date_start = strval($input->post('datestart'));
-		$date_end = strval($input->post('dateend'));
-
-		$select="SELECT
-				pr.type_ppm_activity,
-				cpt.name,
-				cpt.description,
-				cpt.ip,
-				cpt.operating_system,
-				cpt.cpu_core,
-				psc.capacity,
-				pc.comment 
-				from ppm_register pr 
-				join computer cpt on pr.hostname = cpt.name
-				join ppm_server_checklist psc on pr.id_number = psc.id_number
-				join ppm_comment pc on pr.id_number = pc.id_number 
-				where pr.hostname like 'WIHST08%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
 		if($type_ppm != 'ALL'){

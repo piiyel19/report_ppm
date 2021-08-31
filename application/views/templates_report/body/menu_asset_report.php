@@ -45,13 +45,12 @@
 		 </div>
 	    </div> 
 
-
 		<div class="col-md-3">
 		 <div class="panel-group">
 		  <div class="panel panel-default" style="border: transparent;">
 		   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
 		    <center>
-		     <a href="<?= base_url()?>network" aria-expanded="true">
+		     <a href="<?= base_url()?>ui_report\network" aria-expanded="true">
 		      <font  color="#fff" class="font-small">Network <br><br></font>
 		     </a>
 		    </center>

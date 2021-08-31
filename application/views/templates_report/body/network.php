@@ -4,16 +4,10 @@
 			<div class="box-header with-border">
 				<h3 class="box-title"> <b>Generate Report</b> </h3>
 			</div>
+			
 			<div class="box-body">
-				<form method="post" action="<?= base_url()?>ui_generator/computer">
+				<form method="post" action="<?= base_url()?>network">
 					<div class="row">
-						<div class="col-md-3">
-							<label>PPM Category</label><br>
-							<select class="form-control">
-								<option>Server</option>
-								<option selected>Network</option>
-							</select>
-						</div>
 						<div class="col-md-3">
 							<label>PPM Activity</label><br>
 							<select class="form-control">
@@ -41,13 +35,13 @@
 					<div class="row">
 						<div class="col-md-3">
 							<label>Type Device</label><br>
-							<select class="form-control">
+							<select class="form-control" name="ppm_device">
 								<option value="">-- Type Devices --</option> 
-		                        <option value="Access Point">Access Point</option>    
+		                        <option value="Access_Point">Access Point</option>    
 		                        <option value="Controller">Controller</option>
 		                        <option value="Firewall">Firewall</option>
 		                        <option value="UPS">UPS</option>
-		                        <option value="Load Balancer">Load Balancer</option>
+		                        <option value="Load_Balancer">Load Balancer</option>
 		                        <option value="Switch">Switch</option> 
 							</select>
 						</div>
