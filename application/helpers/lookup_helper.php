@@ -5856,6 +5856,14 @@ function lookup_server_device_type()
   return $ci->lookup->lookup_server_device_type();
 }
 
+function lookup_network_device_type()
+{
+  $ci =& get_instance();
+  $ci->load->helper('url');
+  $ci->load->model('Dbase_lookup','lookup');
+  return $ci->lookup->lookup_network_device_type();
+}
+
 function lookup_quarter()
 {
   $ci =& get_instance();

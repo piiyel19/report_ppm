@@ -34,15 +34,21 @@
 					</div><br>
 					<div class="row">
 						<div class="col-md-3">
+							<label>Location</label><br>
+							<select class="form-control" name="location_net">
+								<option value="">-- Location --</option> 
+		                        <option value="datacenter">Datacenter</option>    
+		                        <option value="tcr_room">TCR Room</option>
+		                        <option value="backup_room">Backup Room</option> 
+							</select>
+						</div>
+
+						<div class="col-md-3">
 							<label>Type Device</label><br>
 							<select class="form-control" name="ppm_device">
-								<option value="">-- Type Devices --</option> 
-		                        <option value="Access_Point">Access Point</option>    
-		                        <option value="Controller">Controller</option>
-		                        <option value="Firewall">Firewall</option>
-		                        <option value="UPS">UPS</option>
-		                        <option value="Load_Balancer">Load Balancer</option>
-		                        <option value="Switch">Switch</option> 
+								<option value="">-- Type Devices --</option>
+								<option value="ALL">ALL</option>
+		                        <?= lookup_network_device_type(); ?>
 							</select>
 						</div>
 					</div><br>

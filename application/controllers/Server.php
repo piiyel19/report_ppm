@@ -223,7 +223,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'host_1';
+        $filename = 'Host_1';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -397,7 +397,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 2';
+        $filename = 'Host_2';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -406,7 +406,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_3($input)
@@ -572,7 +571,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 3';
+        $filename = 'Host_3';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -581,7 +580,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_4($input)
@@ -747,7 +745,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 4';
+        $filename = 'Host_4';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -756,7 +754,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_5($input)
@@ -922,7 +919,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 5';
+        $filename = 'Host_5';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -931,7 +928,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_6($input)
@@ -1097,7 +1093,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 6';
+        $filename = 'Host_6';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -1106,7 +1102,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_7($input)
@@ -1272,7 +1267,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 7';
+        $filename = 'Host_7';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -1281,7 +1276,6 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 
     function host_8($input)
@@ -1447,7 +1441,7 @@ class Server extends CI_Controller {
         //SAVE-DOWNLOAD DOCUMENT
         $writer = new Xlsx($spreadsheet);
        
-        $filename = 'Host 8';
+        $filename = 'Host_8';
        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
@@ -1456,6 +1450,5 @@ class Server extends CI_Controller {
         ob_end_clean();
         $writer->save('php://output'); // download file 
         //
-
     }
 }

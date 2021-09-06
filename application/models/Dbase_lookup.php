@@ -66,6 +66,20 @@ class Dbase_lookup extends CI_Model
 		}
 	}
 
+	function lookup_network_device_type()
+	{	
+		$this->db->select('type');
+		$this->db->from('ppm_network_asset');
+		$this->db->group_by('type');
+		$this->db->order_by('type','asc');
+		$query = $this->db->get()->result(); 
+		foreach ($query as $data) 
+		{
+			$name = $data->type;
+			echo '<option value="'.$name.'">'.$name.'</option>';
+		}
+	}
+
 	function myrole($userid)
 	{
 		$this->db->where('userid',$userid);
