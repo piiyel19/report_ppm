@@ -1,0 +1,19 @@
+select
+pr.type_ppm_activity,
+ppd.level,
+lct.department,
+h.description,
+ppd.serial_number,
+h.location,
+lct.room_name,
+pr.hostname,
+pr.perform_date,
+pr.responsible,
+pc.comment
+from ppm_register pr 
+join hardware h on pr.hostname = h.name 
+join location lct on h.location = lct.name 
+join ppm_printer_device ppd on pr.id_number = ppd.id_number 
+join ppm_comment pc on pr.id_number = pc.id_number
+where pr.ppm_device = 'Card Reader'
+order by level,department asc
