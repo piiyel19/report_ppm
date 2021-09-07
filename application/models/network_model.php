@@ -16,6 +16,7 @@ class network_model extends CI_Model
 		$type_ppm  = strval($input->post('ppm_device'));
 
 		$select="SELECT
+				pr.type_ppm_activity,
 				pr.hostname,
 				phd.model,
 				phd.ip,
@@ -80,6 +81,7 @@ class network_model extends CI_Model
 		$type_ppm  = strval($input->post('ppm_device'));
 
 		$select="SELECT
+				pr.type_ppm_activity,
 				pr.hostname,
 				phd.model, 
 				phd.ip,
