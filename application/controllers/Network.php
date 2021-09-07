@@ -184,7 +184,6 @@ class Network extends CI_Controller {
             $data = array();
             array_push($data, 
                 [
-                    $row->type_ppm_activity,
                     $row->hostname,
                     $row->model,
                     $row->ip,
@@ -328,13 +327,12 @@ class Network extends CI_Controller {
 
         //CREATE CUSTOM HEADERS
         //Row 1
-        $sheet->setCellValue('A1', 'Activity No');
-        $sheet->setCellValue('B1', 'Hostname');
-        $sheet->setCellValue('C1', 'Model');
-        $sheet->setCellValue('D1', 'IP Address');
-        $sheet->setCellValue('E1', 'Serial Number');
-        $sheet->setCellValue('F1', 'Location');
-        $sheet->setCellValue('G1', 'Port Available');
+        $sheet->setCellValue('A1', 'Hostname');
+        $sheet->setCellValue('B1', 'Model');
+        $sheet->setCellValue('C1', 'IP Address');
+        $sheet->setCellValue('D1', 'Serial Number');
+        $sheet->setCellValue('E1', 'Location');
+        $sheet->setCellValue('F1', 'Port Available');
 
         //Styling
         $sheet->getStyle('A1')->applyFromArray($style);
@@ -343,7 +341,6 @@ class Network extends CI_Controller {
         $sheet->getStyle('D1')->applyFromArray($style);
         $sheet->getStyle('E1')->applyFromArray($style);
         $sheet->getStyle('F1')->applyFromArray($style);
-        $sheet->getStyle('G1')->applyFromArray($style);
 
         //QUERY DATA
         // $query = $this->server_model->physical_data()->result();
@@ -358,7 +355,6 @@ class Network extends CI_Controller {
             $data = array();
             array_push($data, 
                 [
-                    $row->type_ppm_activity,
                     $row->hostname,
                     $row->model,
                     $row->ip,
@@ -530,13 +526,12 @@ class Network extends CI_Controller {
             $data = array();
             array_push($data, 
                 [
-                    $row->type_ppm_activity,
                     $row->hostname,
                     $row->model,
                     $row->ip,
                     $row->serial_number,
                     $row->location,
-                    $row->port
+                    $row->port 
                 ]
             );
             $sheet->fromArray($data,NULL,'A'.$dt_curr_row);
