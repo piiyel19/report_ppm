@@ -14,8 +14,8 @@ class network_model extends CI_Model
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
-		$date_start = strval($input->post('datestart'));
-		$date_end = strval($input->post('dateend'));
+		// $date_start = strval($input->post('datestart'));
+		// $date_end = strval($input->post('dateend'));
 
 		$select="SELECT
 				pr.hostname,
@@ -27,8 +27,7 @@ class network_model extends CI_Model
 				from ppm_register pr 
 				join ppm_hardware_device phd on pr.id_number = phd.id_number 
 				join ppm_hardware_checklist phc on pr.id_number =  phc.id_number 
-				where pr.location like 'DC%' 
-				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+				where pr.location like 'DC%'";
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
@@ -43,21 +42,22 @@ class network_model extends CI_Model
 	{
 		$activity = strval($input->post('ppm_activity'));
 		$type_ppm  = strval($input->post('ppm_device'));
-		$date_start = strval($input->post('datestart'));
-		$date_end = strval($input->post('dateend'));
+		// $date_start = strval($input->post('datestart'));
+		// $date_end = strval($input->post('dateend'));
 
 		$select="SELECT
+				pr.type_ppm_activity,
 				pr.hostname,
 				phd.model,
 				phd.ip,
 				phd.serial_number,
-				phd.location,
-				phc.port 
+				pr.location,
+				phc.port,
+				pr.ppm_device
 				from ppm_register pr 
-				join ppm_hardware_device phd on pr.id_number = phd.id_number 
-				join ppm_hardware_checklist phc on pr.id_number =  phc.id_number 
-				where pr.location like 'TCR%' 
-				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+				join ppm_hardware_device phd on pr.id_number = phd.id_number
+				join ppm_hardware_checklist phc on pr.id_number = phc.id_number 
+				where pr.location like 'TCR%'";
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";

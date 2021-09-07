@@ -10,17 +10,17 @@
 					<div class="row">
 						<div class="col-md-3">
 							<label>PPM Activity</label><br>
-							<select class="form-control">
+							<select class="form-control" name="ppm_activity">
 								<option value="">-- Select Activity --</option>
 								<?= lookup_option_ppm_act_name('Network')?>
 							</select>
 						</div>
 					</div>
 					<br>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-9"><label>Time Range</label></div>
-					</div>
-					<div class="row">
+					</div> -->
+					<!-- <div class="row">
 						<div class="col-md-3">
 							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 							<label>Start Date</label>
@@ -31,7 +31,7 @@
 							<label>End Date</label>
 							<input type="text" class="form-control datepicker" name="dateend" placeholder="Select End Date...">
 						</div>
-					</div><br>
+					</div><br> -->
 					<div class="row">
 						<div class="col-md-3">
 							<label>Location</label><br>
