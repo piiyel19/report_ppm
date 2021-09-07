@@ -131,6 +131,11 @@ class server_model extends CI_Model
 				where pr.hostname like 'WIHST01%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
+		
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
 		 }
@@ -162,6 +167,10 @@ class server_model extends CI_Model
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST02%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
@@ -195,6 +204,10 @@ class server_model extends CI_Model
 				where pr.hostname like 'WIHST03%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
 		 }
@@ -226,6 +239,10 @@ class server_model extends CI_Model
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST04%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
@@ -259,6 +276,10 @@ class server_model extends CI_Model
 				where pr.hostname like 'WIHST05%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
 		 }
@@ -290,6 +311,10 @@ class server_model extends CI_Model
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST06%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
@@ -323,6 +348,10 @@ class server_model extends CI_Model
 				where pr.hostname like 'WIHST07%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
 
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
 		 }
@@ -354,6 +383,10 @@ class server_model extends CI_Model
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.hostname like 'WIHST08%'
 				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
 
 		if($type_ppm != 'ALL'){
 		 	$select .=" and pr.ppm_device = '".$type_ppm."' ";
