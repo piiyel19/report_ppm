@@ -24,8 +24,57 @@ class workstation_model extends CI_Model
 
 	  }
 
+	function card_data($input)
+	{	
+		$activity = strval($input->post('ppm_activity'));
+		$level = strval($input->post('level'));
+		$dept = strval($input->post('department'));
+		$date_start = strval($input->post('datestart'));
+		$date_end = strval($input->post('dateend'));
+
+		$select="SELECT
+				pr.type_ppm_activity,
+				ppd.level,
+				lct.department,
+				h.description,
+				ppd.serial_number,
+				h.location,
+				lct.room_name,
+				pr.hostname,
+				pr.perform_date,
+				pr.responsible,
+				pc.comment
+				from ppm_register pr 
+				join hardware h on pr.hostname = h.name 
+				join location lct on h.location = lct.name 
+				join ppm_printer_device ppd on pr.id_number = ppd.id_number 
+				join ppm_comment pc on pr.id_number = pc.id_number
+				where pr.ppm_device = 'Card Reader'
+				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
+		if($level != 'ALL'){
+			$select .=" and lct.level = '".$level."' ";
+		}
+
+		if($dept != 'ALL'){
+			$select .=" and lct.department = '".$dept."' ";
+		}			
+				
+
+		$select .= " order by cast(ppd.level as int),department asc ";
+
+  		$query= $this->db2->query($select);
+
+		return $query;
+	}
+
 	function computer_data($input)
-	{	$activity = strval($input->post('ppm_activity'));
+	{	
+		$activity = strval($input->post('ppm_activity'));
 		$level = strval($input->post('level'));
 		$dept = strval($input->post('department'));
 		$date_start = strval($input->post('datestart'));
@@ -84,9 +133,16 @@ class workstation_model extends CI_Model
 		return $query;
 	}
 
-	function laptop_data($param)
+	function laptop_data($input)
 	{
-		$select="select
+		$activity = strval($input->post('ppm_activity'));
+		$level = strval($input->post('level'));
+		$dept = strval($input->post('department'));
+		$date_start = strval($input->post('datestart'));
+		$date_end = strval($input->post('dateend'));
+
+		$select="
+				SELECT 
 				pr.type_ppm_activity,
 				lct.level,
 				lct.department,
@@ -111,16 +167,38 @@ class workstation_model extends CI_Model
 				join ppm_computer_checklist pcc on pr.id_number = pcc.id_number 
 				join ppm_comment pc on pr.id_number = pc.id_number 
 				where pr.ppm_device = 'Notebook'
-				order by level,department asc";
+				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y') ";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
+		if($level != 'ALL'){
+			$select .=" and lct.level = '".$level."' ";
+		}
+
+		if($dept != 'ALL'){
+			$select .=" and lct.department = '".$dept."' ";
+		}			
+				
+
+		$select .= " order by cast(level as int),department asc ";
 
   		$query= $this->db2->query($select);
 
 		return $query;
 	}
 
-	function printer_data($param)
+	function printer_data($input)
 	{
-		$select="select
+		$activity = strval($input->post('ppm_activity'));
+		$level = strval($input->post('level'));
+		$dept = strval($input->post('department'));
+		$date_start = strval($input->post('datestart'));
+		$date_end = strval($input->post('dateend'));
+
+		$select="
+				SELECT
 				pr.type_ppm_activity,
 				lct.level,
 				lct.department,
@@ -139,15 +217,36 @@ class workstation_model extends CI_Model
 				join location lct on hardware.location = lct.name
 				join ppm_comment pc on pr.id_number = pc.id_number
 				where pr.ppm_device = 'Printer'
-				order by cast(level as int),department asc";
+				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y')";
+
+		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
+		if($level != 'ALL'){
+			$select .=" and lct.level = '".$level."' ";
+		}
+
+		if($dept != 'ALL'){
+			$select .=" and lct.department = '".$dept."' ";
+		}			
+				
+
+		$select .= " order by cast(level as int),department asc ";
 
   		$query= $this->db2->query($select);
 
 		return $query;
 	}
 
-	function scanner_data($param)
+	function scanner_data($input)
 	{
+		$activity = strval($input->post('ppm_activity'));
+		$level = strval($input->post('level'));
+		$dept = strval($input->post('department'));
+		$date_start = strval($input->post('datestart'));
+		$date_end = strval($input->post('dateend'));
+
 		$select="select
 				pr.type_ppm_activity,
 				lct.level,
@@ -167,7 +266,22 @@ class workstation_model extends CI_Model
 				join location lct on hardware.location = lct.name
 				join ppm_comment pc on pr.id_number = pc.id_number
 				where pr.ppm_device = 'Scanner'
-				order by cast(level as int),department asc";
+				and STR_TO_DATE(pr.perform_date,'%d/%m/%Y') between STR_TO_DATE('".$date_start."','%d/%m/%Y') and STR_TO_DATE('".$date_end."','%d/%m/%Y')";
+
+  		if($activity != 'ALL'){
+			$select .=" and pr.type_ppm_activity = '".$activity."' ";
+		}
+
+		if($level != 'ALL'){
+			$select .=" and lct.level = '".$level."' ";
+		}
+
+		if($dept != 'ALL'){
+			$select .=" and lct.department = '".$dept."' ";
+		}			
+				
+
+		$select .= " order by cast(level as int),department asc ";
 
   		$query= $this->db2->query($select);
 
