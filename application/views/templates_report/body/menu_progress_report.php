@@ -22,7 +22,7 @@
 		  <div class="panel panel-default" style="border: transparent;">
 		   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
 		    <center>
-		     <a href="<?= base_url()?>ui_report\workstation" aria-expanded="true">
+		     <a href="<?= base_url()?>ui_report\progress_workstation" aria-expanded="true">
 		      <font  color="#fff" class="font-small">Workstation <br><br></font>
 		     </a>
 		    </center>
@@ -31,34 +31,6 @@
 		 </div>
 	    </div>
 
-        <div class="col-md-3">
-		 <div class="panel-group">
-		  <div class="panel panel-default" style="border: transparent;">
-		   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
-		    <center>
-		     <a href="<?= base_url()?>server" aria-expanded="true">
-		      <font  color="#fff" class="font-small">Server <br><br></font>
-		     </a>
-		    </center>
-		   </div>
-		  </div>
-		 </div>
-	    </div> 
-
-
-		<div class="col-md-3">
-		 <div class="panel-group">
-		  <div class="panel panel-default" style="border: transparent;">
-		   <div id="test_v3" class="panel-collapse collapse in" style="background-color:#5d95bdbf;">   
-		    <center>
-		     <a href="<?= base_url()?>network" aria-expanded="true">
-		      <font  color="#fff" class="font-small">Network <br><br></font>
-		     </a>
-		    </center>
-		   </div>
-		  </div>
-		 </div>
-	    </div>
 	</div>
 </div>
 
