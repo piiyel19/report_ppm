@@ -32,9 +32,9 @@
 						</div>
 						<br>
 						<div class="col-md-4" style="align-content: center;">
-						  <input type="radio" name="typereport" onclick="handleClick(this);" value="daily" checked> Progress Report - Daily</input><br>
-						  <input type="radio" name="typereport" onclick="handleClick(this);" value="month"> Progress Report - Montly</input><br>
-						  <input type="radio" name="typereport" onclick="handleClick(this);" value="level"> Progress Report by Level</input>
+						  <input type="radio" name="typereport" onChange="getValue(this)" value="daily" checked> Progress Report - Daily</input><br>
+						  <input type="radio" name="typereport" onChange="getValue(this)" value="month"> Progress Report - Montly</input><br>
+						  <input type="radio" name="typereport" onChange="getValue(this)" value="level"> Progress Report by Level</input>
 						</div>
 					</div>
 					<br>
@@ -49,35 +49,28 @@
 
 					<div class="row">
 						<div class="col-md-3">
-						  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-						  <label>Start Month</label>
-						  <input type="text" class="form-control datepicker" name="datestart" placeholder="Select Start Date...">
+						  <span class="glyphicon glyphicon-calendar date" aria-hidden="true"></span>
+						  <label class="date">Start Month</label>
+						  <input type="text" class="form-control datepicker date" name="datestart" placeholder="Select Start Date...">
 						</div>
 						<div class="col-md-3">
-						  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-						  <label>End Month</label>
-						  <input type="text" class="form-control datepicker" name="dateend" placeholder="Select End Date...">
+						  <span class="glyphicon glyphicon-calendar date" aria-hidden="true"></span>
+						  <label class="date">End Month</label>
+						  <input type="text" class="form-control datepicker date" name="dateend" placeholder="Select End Date...">
 						</div>
+					</div>
+					<br>
+
+					<div class="row">
 						<div class="col-md-3">
-						  <label id='level'>Level</label><br>
-						  <select class="form-control" name="level" id='level_select'>
+						  <label class='level' id='level'>Level</label><br>
+						  <select class="form-control level" name="level" id='level_select'>
 						  	<option selected=""> -- Select Level -- </option>
 							<option value="ALL">ALL</option>
 							<?= lookup_level(); ?>
 						  </select>
 						</div>
 						<div class="col-md-3">
-						  <label>Type Device</label><br>
-						  <select class="form-control" name="ppm_device">
-							<option selected=""> -- Select Device -- </option>
-							<?= lookup_workstation_device_type(); ?>
-						  </select>
-						</div>
-					</div>
-					<br>
-
-					<div class="row">
-						<div class="col-md-2">
 						  <label>Type Device</label><br>
 						  <select class="form-control" name="ppm_device">
 							<option selected=""> -- Select Device -- </option>
@@ -95,35 +88,28 @@
 					  </div>
 					</div>
 
-					<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	      			<script>
-	      			 function showRequiredOption(cval)
+					<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	      			<script type="text/javascript">
+	      			 function getValue(x) 
 	      			 {
-	      			  if(cval=='month')
+	      			  if(x.value == 'month')
+	      			   {
+	      				$('.level').hide();
+	      				$('.date').show();
+	      			   }
+	      			  
+	      			  else if(x.value == 'level')
+	      			   {
+	      				$('.level').show();
+	      				$('.date').hide();
+	      			   }
+
+	      			  else
 	      			   {
 	      			   	$('.level').show();
+	      				$('.date').show();
 	      			   }
-	      			  else if(cval=='level')
-	      			   {
-	      			   	$('.level').hide();
-	      			   }
-	      			  else
-	      			  {
-
-	      			  }
 	      			 }
-	      			</script> -->
-
-	      			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	      			<script>
-	      				$(document).ready(function(){
-	      					$("#hide").click(function(){
-	      						$("p").hide();
-	      					});
-	      					$("#show").click(function(){
-	      						$("p").show();
-	      					});
-	      				});
 	      			</script>
 				</form>
 			</div>
