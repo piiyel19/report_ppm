@@ -1,0 +1,9 @@
+select 
+	count(if (ppm_device='Computer',1,null)) as Desktop,
+	count(if (ppm_device='Notebook',1,null)) as Notebook,
+	count(if (ppm_device='Printer',1,null)) as Printer,
+	count(if (ppm_device='Scanner',1,null)) as Scanner,
+	count(if (ppm_device='Card Reader',1,null)) as Card_reader,
+	count(if (ppm_device='Others',1,null)) as Other
+	from ppm_register
+	where type_ppm_activity = '53' and month(str_to_date(perform_date, '%d/%m/%Y')) = 04;
